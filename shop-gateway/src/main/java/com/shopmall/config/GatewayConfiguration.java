@@ -72,8 +72,8 @@ public class GatewayConfiguration {
 
     @PostConstruct
     public void doInit() {
-       // initGatewayRules();
-        initApiGatewayRules();
+       // initGatewayRules(); //基于路由维度的限流规则
+        initApiGatewayRules();//基于自定义的API分组限流规则
     }
 
     /**
