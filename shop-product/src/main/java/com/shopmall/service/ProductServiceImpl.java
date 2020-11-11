@@ -26,4 +26,15 @@ public class ProductServiceImpl  implements ProductService{
         product.setDeleteFlag(false);
         return productMapper.insertSelective(product);
     }
+
+    @Override
+    public int reduceStock(Long productId, Integer num) {
+        Product product = queryById(productId);
+        //库存小于购买数量时候，不能下单成功
+        if(product.getStock() < num){
+            return 0;
+        }
+        product.setStock(product.getStock()- num);
+        return productMapper.updateByPrimaryKeySelective(product);
+    }
 }

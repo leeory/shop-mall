@@ -21,8 +21,8 @@ public class UserController {
         return row == 1? Result.success(""):Result.error(ResultEnum.BUSINESS_ERROR);
     }
 
-    @GetMapping("queryUserById")
-    public Result queryUserById(Long  userId){
+    @GetMapping("queryUserById/{userId}")
+    public Result queryUserById(@PathVariable("userId") Long  userId){
         User user = userService.queryById(userId);
         return  Result.success(user);
     }

@@ -8,4 +8,12 @@ public interface ProductService {
 
 
     int save(Product product);
+
+
+    /**
+     * 减库存
+     * @param productId 商品id
+     * @param num 数量
+     */
+    int reduceStock(Long productId,Integer num);
 }

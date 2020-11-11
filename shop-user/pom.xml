@@ -8,19 +8,31 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>shop-user</artifactId>
 
     <dependencies>
+        <!-- 项目公共模块-->
+        <dependency>
+            <groupId>com.cloud.mall</groupId>
+            <artifactId>shop-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- web组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- nacos服务注册中心-->
         <dependency>
-            <groupId>com.cloud.mall</groupId>
-            <artifactId>shop-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+              <groupId>com.alibaba.cloud</groupId>
+              <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+         </dependency>
+
+        <!--链路追踪客户端，zipkin-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
     </dependencies>
 

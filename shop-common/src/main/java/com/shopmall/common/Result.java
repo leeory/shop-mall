@@ -1,5 +1,10 @@
 package com.shopmall.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @author: ly
  * @Description:  公共返回结果集
@@ -8,6 +13,10 @@ package com.shopmall.common;
  * @param:
  * @return:
  */
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Result<T> {
 
 
@@ -46,27 +55,5 @@ public class Result<T> {
 
 
 
-    public String getCode() {
-        return code;
-    }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }

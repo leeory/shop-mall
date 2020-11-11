@@ -1,0 +1,46 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: api-gateway
+  #集成nacos注册中心
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848 #nacos注册中心地址
+    gateway:
+      discovery:
+        locator:
+          #开启gateway从nacos上获取服务列表
+          enabled: true
+      routes:  #路由数组，（路由是指满足什么样的条件的时候转发到哪个服务上去）
+        - id: product-route  #当前路由标识，要唯一
+          uri: lb://service-product  #请求最终被转发到的地址
+          order: 1 #order指定路由的优先级，数字越小，代表优先级越高
+          predicates: #断言（条件判断，返回值boolean类型，转发请求满足的条件）
+            - Path=/product-srv/** #注意-后面的空格
+          filters: #过滤器(请求在传递过程中，对请求做一些手脚)
+            - StripPrefix=1 #在请求转发之前去掉最前面的一层路径。注意-后面的空格，注意=号前后不能有空格
+        - id: order-route
+          uri: lb://service-order
+          order: 1
+          predicates:
+            - Path=/order-srv/**
+          filters:
+            - StripPrefix=1
+        - id: user-route
+          uri: lb://service-user
+          order: 1
+          predicates:
+            - Path=/user-srv/**
+            - Age=18,60  #自定义的路由断言
+          filters:
+            - StripPrefix=1
+            - Log=false,true #自定义的局部过滤器
+  #链路追踪组件
+  zipkin:
+    base-url: http://127.0.0.1:9999
+    discovery-client-enabled: false #让nacos把他当成url,而不是当作服务名
+  sleuth:
+    sampler:
+      probability: 1.0 #采样百分比[0.1~1.0]，生产环境根据实际情况配置，配置的太大会影响服务的性能
