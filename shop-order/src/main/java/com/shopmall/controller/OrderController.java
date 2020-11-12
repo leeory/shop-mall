@@ -87,7 +87,7 @@ public class OrderController {
 
 
     @SentinelResource(value = "order/api2",fallbackClass = CustomerFallbackHandler.class,
-                blockHandler = "fallback")
+                fallback = "fallback")
     @GetMapping("api2")
     public Result api2(){
         return Result.success("api2 success");

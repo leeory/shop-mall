@@ -27,10 +27,4 @@ public class Order {
 
     private Date updateTime;
 
-    public Long getId() {
-        return id;
-    }
-
-
-
 }

@@ -6,6 +6,7 @@ import com.shopmall.entity.Order;
 import com.shopmall.entity.Product;
 import com.shopmall.remoteService.ProductRemoteService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,9 @@ public class OrderServiceImpl  implements  OrderService{
 
     @Autowired
     private ProductRemoteService productRemoteService;
+
+    @Autowired
+    private RocketMQTemplate mqTemplate;
 
     @Transactional
     @Override
@@ -43,6 +47,8 @@ public class OrderServiceImpl  implements  OrderService{
         orderMapper.insertSelective(order);
         //扣减库存
         productRemoteService.reduceStock(productId,number);
+        //发送消息给用户微服务
+        mqTemplate.convertAndSend("order-topic",order);
         return Result.success(order);
     }
 
