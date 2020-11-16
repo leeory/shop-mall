@@ -36,6 +36,12 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
+        <!--sentinel 规则持久化到nacos需要的依赖-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+
         <!-- 微服务远程调用组件feign组件-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -46,12 +52,6 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-
-        <!--sentinel 规则持久化到nacos需要的依赖-->
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
 
         <!--链路追踪客户端，zipkin-->
@@ -93,7 +93,5 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-
     </dependencies>
 </project>

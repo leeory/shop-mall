@@ -46,6 +46,10 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         namespace: public
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:2222
+
   zipkin:
     base-url: http://127.0.0.1:9999
     discovery-client-enabled: false #让nacos把他当成url,而不是当作服务名

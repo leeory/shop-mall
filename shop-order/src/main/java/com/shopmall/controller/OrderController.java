@@ -92,4 +92,11 @@ public class OrderController {
     public Result api2(){
         return Result.success("api2 success");
     }
+
+    @SentinelResource(value = "order/api3",blockHandlerClass = CustomerBlockHandler.class,
+            blockHandler = "handlerException3")
+    @GetMapping("api3")
+    public Result api3(){
+        return Result.success("api3 success");
+    }
 }
