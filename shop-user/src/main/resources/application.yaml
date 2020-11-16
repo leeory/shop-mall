@@ -1,0 +1,11 @@
+#1，同一微服务不同环境的之间的配置共享，根据配置文件的名字，就可以实现如(service-user服务的):
+#service-user.yaml 为公共配置存放的文件，只存放公共的配置信息，
+#service-user-dev.yaml 为开发环境的配置文件，只存放开发环境的配置信息，
+#service-user-test.yaml 为测试环境的配置文件，只存放测试环境的配置信息。
+
+#2，不同微服务之间的配置共享
+#    在nocos配置中新建一个all-servce.yaml配置文件，所有微服务共享的配置，配在这个服务里面。
+#    修改各个微服务的bootstrap.yaml文件中引入此配置文件：
+#    refresh-enabled: true
+#      shared-configs:
+#        - all-service.yaml
