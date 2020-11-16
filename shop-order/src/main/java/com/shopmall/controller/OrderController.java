@@ -25,7 +25,7 @@ public class OrderController {
     @Autowired
     private ProductRemoteService productRemoteService;
 
-    @PostMapping("createOrder")
+    @GetMapping("createOrder")
     public Result createOrder(Long productId,Long userId,Integer number){
         orderService.createOrder(productId,userId,number);
         return Result.success("创建订单成功");

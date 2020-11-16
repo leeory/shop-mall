@@ -1,9 +1,9 @@
 # shop-mall
 
 ### 介绍
- ####spring cloud + spring cloud alibaba 全家桶
+   #### spring cloud + spring cloud alibaba 全家桶
   * 1.使用spring cloud Hoxton版 当前最新版本
-  * 2.spring cloud Hoxton版 对应cloud alibab 2.2.0版以及spring boot 2.2.11版本   
+  * 2.spring cloud Hoxton.SR8版 对应cloud alibab 2.2.3版以及spring boot 2.3.2版本   
   * 3.本项目单纯为了学习spring cloud 和 spring cloud alibaba技术栈，包含了：nacos注册中心，
     sentinel服务熔断，限流， Sleuth+Zipkin服务链路追踪，rocketmq消息队列，spring cloud gateway网关服务，
     和分布式事务seata等。

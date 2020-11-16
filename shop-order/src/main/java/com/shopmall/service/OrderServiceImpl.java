@@ -5,6 +5,7 @@ import com.shopmall.dao.OrderMapper;
 import com.shopmall.entity.Order;
 import com.shopmall.entity.Product;
 import com.shopmall.remoteService.ProductRemoteService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class OrderServiceImpl  implements  OrderService{
     @Autowired
     private RocketMQTemplate mqTemplate;
 
+    @GlobalTransactional
     @Transactional
     @Override
     public Result createOrder(Long productId,Long userId,Integer number) {
@@ -44,11 +46,11 @@ public class OrderServiceImpl  implements  OrderService{
         order.setDeleteFlag(false);
         order.setCreateTime(new Date());
         order.setUserId(userId);
-        orderMapper.insertSelective(order);
+        int row = orderMapper.insertSelective(order);
         //扣减库存
         productRemoteService.reduceStock(productId,number);
         //发送消息给用户微服务
-        mqTemplate.convertAndSend("order-topic",order);
+        //mqTemplate.convertAndSend("order-topic",order);
         return Result.success(order);
     }
 

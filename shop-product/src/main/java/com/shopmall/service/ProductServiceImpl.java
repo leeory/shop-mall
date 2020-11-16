@@ -34,6 +34,7 @@ public class ProductServiceImpl  implements ProductService{
         if(product.getStock() < num){
             return 0;
         }
+        //int i = 7/0;//手动造异常，测试分布式事务
         product.setStock(product.getStock()- num);
         return productMapper.updateByPrimaryKeySelective(product);
     }

@@ -29,7 +29,7 @@ public class ProductController {
 
 
     @PostMapping("reduceStock")
-    public Result reduceStock(Long  productId,Integer num){
+    public Result reduceStock(Long productId,Integer num){
         int row = productService.reduceStock(productId,num);
         return row > 0?Result.success("扣减商品库存成功"):Result.success("扣减商品库存失败");
     }
